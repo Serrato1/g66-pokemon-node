@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <title>Pokemon</title>
+    <script src="https://use.fontawesome.com/44d41c7531.js"></script>
+  </head>
+  <body>
+    <div class='top-nav'>
+      <li><a href="/trainers">Trainers</a></li>
+      <li><a href="/pokemon">Pokemon</a></li>
+      <li><a href="/gym">Gym</a></li>
+    </div>
+    <div class="main">
+    <!--TOGGLE ADD POKEMON FORM-->
+    <div class="pokemon-list-container">
+      <div class="pokemon-container">
+        <div class="pokemon top-column">
+          <li class="info">ID</li>
+          <li class="info">POKEMON</li>
+          <li class="info">TRAINER</li>
+          <li class="info">CP</li>
+          <li class="info">IN GYM</li>
+        </div>
+        <% for(i= 0; i < pokemonObj.length;i++ ){ %>
+          <% if(!updatePokemon){%>
+            <div class="pokemon">
+              <div class="info"><a href="/pokemon/<%=pokemonObj[i].id %>"> <%=pokemonObj[i].id %></a></div>
+              <div class="info"><%=pokemonObj[i].name %></div>
+              <div class="info"><%=pokemonObj[i].trainer_id %></div>
+              <div class="info"><%=pokemonObj[i].cp %></div>
+              <div class="info"><%=pokemonObj[i].in_gym %></div>
+              <% if(pokemonObj[i].in_gym){%>
+                <a href="/gym/remove/<%=pokemonObj[i].id%>">
+                  <option>REMOVE FROM GYM</option>
+                </select>
+              <%}else{%>
+                <button class="info" style="outline:none">
+                  <a href="/gym/add/<%=pokemonObj[i].id%>">
+                  ADD TO GYM
+                  </a>
+                </button>
+              <%}%>
+
+              <button class="info" style="outline:none"><a href="/pokemon/update/<%=pokemonObj[i].id %>"> EDIT </a></button>
+              <button class="info"><a href="/pokemon/delete/<%=pokemonObj[i].id %>">DELETE</a></button>
+            </div>
+          <% }else if(pokemonObj[i].id == updatePokemon.id){%>
+            <form class="pokemon" action="/pokemon/update" method="post">
+              <input type="hidden" name="id" value="<%=updatePokemon.id%>"></input>
+              <div class="info" ><%=updatePokemon.id%></div>
+              <input  name="name" type="text"  class="info" value="<%=updatePokemon.name %>" />
+              <input name="trainer_id" type="text" class="info" value="<%=updatePokemon.trainer_id %>" />
+              <input name="cp" type="text" class="info" value="<%=updatePokemon.cp %>"/>
+              <div class="info" ><%=updatePokemon.in_gym %> </div>
+              <select class="info">
+                <% trainers.forEach((trainer)=>{%>
+                  <option><%= trainer.name%></option>
+                <% }) %>
+              </select>
+              <input type="submit" class="info" value="UPDATE"></input>
+              <button class="info"><a href="/pokemon/delete/<%=pokemonObj[i].id %>">DELETE</a></button>
+            </form>
+          <%}%>
+
+
+        <%} %>
+
+
+      </div>
+    </div>
+
+    </div>
+    <% if (showPokemonForm){%>
+      <form action="/pokemon/create" method="post">
+        <input type="text" name="name" value="" placeholder="Pokemon Name">
+        <input type="text" name="trainer_id" placeholder="Trainer ID">
+        <input type="text" name="cp" placeholder="CP">
+        <input type="submit" name="addPokemon" value="Submit Pokemon" />
+        <a href="/pokemon">cancel</a>
+      </form>
+    <% }else{%>
+      <form action="/pokemon/create" method="get">
+        <input type="submit" value="Add Pokemon" />
+      </form>
+    <% }%>
+
+    </div>
+
+  </body>
+</html>

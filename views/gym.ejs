@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <title>Gym</title>
+    <script src="https://use.fontawesome.com/44d41c7531.js"></script>
+
+  </head>
+  <body>
+    <div class='top-nav'>
+      <li><a href="/trainers">Trainers</a></li>
+      <li><a href="/pokemon">Pokemon</a></li>
+      <li><a href="/gym">Gym</a></li>
+    </div>
+    <div class="main">
+      <h2>GYM</h2>
+      <h5>POKEMON IN GYM</h5>
+      <div>
+        <%if(gym[0]   && gym[1] ){%>
+          <li> Pokemon1 : <%= gym[0] %> </li>
+          <li> Pokemon2 : <%= gym[1] %> </li>
+          <form action="/gym/battle/<%=gym[0]%>/<%=gym[1]%>">
+            <% if(winner !== false ){ %>
+              WINNER IS : <%= winner %>
+            <%} %>
+              <input type="submit" value="BATTLE"> </input>
+        </form>
+        <%}else{%>
+          <form action="/gym/add" method="POST" style="display : inline">
+          <li>
+                Pokemon :
+                <% if(!gym[0]){ %>
+                <select name="slot1" value="" style="display : inline">
+                  <option>SELECT POKEMON</option>
+                  <% pokemonObj.forEach((pokemon)=>{ %>
+                  <option value="<%= pokemon.id %>"><%= pokemon.id %>-<%=pokemon.name %></option>
+                  <% }) %>
+                </select>
+                <%}else{%>
+                  <%= gym[0] %>
+                <%}%>
+          </li>
+          <li>
+                Pokemon :
+                <% if(!gym[1]){ %>
+                <select name="slot2" value="" style="display : inline">
+                  <option>SELECT POKEMON</option>
+                  <% pokemonObj.forEach((pokemon)=>{ %>
+                    <% if(pokemon.id != gym[0]){ %>
+                      <option value="<%= pokemon.id %>"><%= pokemon.id %>-<%=pokemon.name %></option>
+                    <%} %>
+                  <% }) %>
+                </select>
+                <%}else{%>
+                  <%= gym[1]  %>
+                <%}%>
+          </li>
+        <input type="submit" value="ADD POKEMON"></input>
+        </form>
+        <%}%>
+
+      </div>
+      <br>
+      <a href="/gym/reset">RESET GYM</a>
+
+    </div>
+
+  </body>
+</html>

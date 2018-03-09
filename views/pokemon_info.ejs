@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <title>Pokemon</title>
+    <script src="https://use.fontawesome.com/44d41c7531.js"></script>
+
+  </head>
+  <body>
+    <div class='top-nav'>
+      <li><a href="">Trainers</a></li>
+      <li><a href="/pokemon">Pokemon</a></li>
+      <li><a href="">Gym</a></li>
+    </div>
+    <div class="main">
+      <img src="<%= pokeImg %>"></img><br>
+      PokeID: <%= pokemonInfo.id %><br>
+      Pokemon: <%= pokemonInfo.pokemon_name %><br>
+      Trainer: <%= pokemonInfo.trainer_name %><br>
+      CP: <%= pokemonInfo.cp %><br>
+      In Gym: <%= pokemonInfo.in_gym %>
+    </div>
+
+  </body>
+</html>
