@@ -13,12 +13,16 @@
       <li><a href="">Gym</a></li>
     </div>
     <div class="main">
-      <img src="<%= pokeImg %>"></img><br>
-      PokeID: <%= pokemonInfo.id %><br>
-      Pokemon: <%= pokemonInfo.pokemon_name %><br>
-      Trainer: <%= pokemonInfo.trainer_name %><br>
-      CP: <%= pokemonInfo.cp %><br>
-      In Gym: <%= pokemonInfo.in_gym %>
+      <div class="pokemon-card">
+        <img src="<%= pokeImg %>"></img>
+        <div class="card-name">NAME: <%= pokemonInfo.pokemon_name %></div>
+        <div class="card-id">ID: <%= pokemonInfo.id %></div>
+
+        <div class="card-trainer">TRAINER: <%= pokemonInfo.name %></div>
+        <div class="card-cp">CP: <%= pokemonInfo.cp %></div>
+        <div class="card-gym">IN GYM: <%= pokemonInfo.in_gym %></div>
+      </div>
+
     </div>
 
   </body>

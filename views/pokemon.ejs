@@ -31,9 +31,11 @@
               <div class="info"><%=pokemonObj[i].cp %></div>
               <div class="info"><%=pokemonObj[i].in_gym %></div>
               <% if(pokemonObj[i].in_gym){%>
-                <a href="/gym/remove/<%=pokemonObj[i].id%>">
-                  <option>REMOVE FROM GYM</option>
-                </select>
+              <button class="info" style="outline:none">
+                  <a href="/gym/remove/<%=pokemonObj[i].id%>">
+                  REMOVE FROM GYM
+                  </a>
+              </button>
               <%}else{%>
                 <button class="info" style="outline:none">
                   <a href="/gym/add/<%=pokemonObj[i].id%>">
